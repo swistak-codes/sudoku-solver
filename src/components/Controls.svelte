@@ -8,6 +8,7 @@
     hintsIndexes,
     isFreshData,
     isIterationFinished,
+    isValid,
     iterationsCount,
     sudoku,
   } from '../stores';
@@ -105,7 +106,7 @@
 
 <Container>
   <Button
-    disabled="{!$canExecuteIteration || isAnimating}"
+    disabled="{!$canExecuteIteration || isAnimating || !$isValid}"
     on:click="{goToNext}"
   >
     Następny krok
@@ -119,11 +120,11 @@
       min="1"
       max="60"
       bind:value="{fps}"
-      disabled="{!$canExecuteIteration || isAnimating}"
+      disabled="{!$canExecuteIteration || isAnimating || !$isValid}"
     />
   </ContainerItem>
   {#if !isAnimating}
-    <Button disabled="{!$canExecuteIteration}" on:click="{animate}"
+    <Button disabled="{!$canExecuteIteration || !$isValid}" on:click="{animate}"
       >Odtwórz animację</Button
     >
   {:else}
@@ -132,7 +133,7 @@
     </Button>
   {/if}
   <Button
-    disabled="{!$canExecuteIteration || isAnimating}"
+    disabled="{!$canExecuteIteration || isAnimating || !$isValid}"
     on:click="{fastForward}"
   >
     Przewiń do końca

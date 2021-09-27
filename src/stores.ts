@@ -1,5 +1,6 @@
 import { derived, writable } from 'svelte/store';
 import { getDefaultSudoku } from './helpers/getSudoku';
+import { validateInput } from './algorithms/validate';
 
 export const sudoku = writable<number[][]>(getDefaultSudoku());
 
@@ -14,3 +15,8 @@ export const canExecuteIteration = derived(
 );
 
 export const hintsIndexes = writable<Set<string>>(new Set());
+
+export const isValid = derived(
+  [sudoku, isFreshData],
+  ([$sudoku, $isFreshData]) => ($isFreshData ? validateInput($sudoku) : true),
+);

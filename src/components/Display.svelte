@@ -2,6 +2,7 @@
   import {
     hintsIndexes,
     isFreshData,
+    isValid,
     iterationsCount,
     sudoku,
   } from '../stores';
@@ -68,6 +69,10 @@
       -webkit-appearance: none;
     }
   }
+
+  .invalid {
+    color: darken(#ff3e00, 20%);
+  }
 </style>
 
 <Container>
@@ -96,4 +101,7 @@
     </tbody>
   </table>
 </Container>
+{#if !$isValid}
+  <p class="invalid">Nieprawidłowo wypełnione sudoku!</p>
+{/if}
 <p>Liczba wykonanych iteracji: {$iterationsCount}</p>
