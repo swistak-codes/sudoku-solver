@@ -7,8 +7,6 @@
     sudoku,
   } from '../stores';
   import Container from './shared/Container.svelte';
-
-  sudoku.subscribe((values) => console.log(values));
 </script>
 
 <style lang="scss">
