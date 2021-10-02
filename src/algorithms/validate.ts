@@ -1,4 +1,4 @@
-// pozycje narożników "pudełek": [lewy-górny-x, lewy-górny-y, prawy-dolny-x, prawy-dolny-y]
+// pozycje narożników kwadratów: [lewy-górny-x, lewy-górny-y, prawy-dolny-x, prawy-dolny-y]
 const boxPositions = {
   0: [0, 0, 2, 2],
   1: [3, 0, 5, 2],
@@ -16,7 +16,7 @@ const boxPositions = {
  * @param sudoku
  */
 export const validate = (sudoku: number[][]) => {
-  // mamy 9 wierszy, kolumn i pudełek, więc wystarczy jedna iteracja od 0 do 9
+  // mamy 9 wierszy, kolumn i kwadratów, więc wystarczy jedna iteracja od 0 do 9
   for (let i = 0; i < 9; i++) {
     if (
       !checkUniqueRow(i, sudoku) ||
@@ -85,14 +85,14 @@ const checkUniqueColumn = (column: number, sudoku: number[][]) => {
 };
 
 /**
- * Funkcja sprawdzająca czy w pudełku są same unikalne liczby
+ * Funkcja sprawdzająca czy w kwadracie są same unikalne liczby
  * @param box
  * @param sudoku
  */
 const checkUniqueBox = (box: number, sudoku: number[][]) => {
   // znowu działanie jest analogiczne
   let visited = 0;
-  // pobieramy współrzędne pudełka z tablicy
+  // pobieramy współrzędne kwadratu z tablicy
   const [startI, startJ, endI, endJ] = boxPositions[box];
   const values = new Set<number>();
   // tym razem iterujemy po dwóch wymiarach
